@@ -8,19 +8,19 @@ const FrontPage = ({ data }) => {
   const { front } = data;
 
   return (
-    <>
+    <article>
+      <h1>{front.title}</h1>
       <Img
         // fluid={data.heroImage.childImageSharp.fluid}
         fixed={data.heroImage.childImageSharp.fixed}
         alt="Gatsby Docs are awesome"
       />
-      <h1>{front.title}</h1>
       <section
         dangerouslySetInnerHTML={{
           __html: sanitizeHtml(front.content, sanitizeOptions),
         }}
       ></section>
-    </>
+    </article>
   );
 };
 

@@ -2,11 +2,13 @@ import path from "path";
 import { slash } from "gatsby-core-utils";
 
 async function singlePostToPage({ graphql, actions }) {
+  const BlogPage = path.resolve("src/pages/blog.js");
   const SinglePost = path.resolve("src/templates/SinglePost.js");
 
   const { data } = await graphql(`
     query {
       posts: allWpPost {
+        totalCount
         nodes {
           slug
           uri
@@ -25,6 +27,24 @@ async function singlePostToPage({ graphql, actions }) {
         // as props into the page component..
         // include slug so we can query a single post's data
         slug: post.slug,
+      },
+    });
+  });
+
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = Math.ceil(data.posts.totalCount / pageSize);
+
+  Array.from({ length: pageCount }).forEach((_, index) => {
+    console.log(`Creating page ${index}`);
+
+    actions.createPage({
+      path: `/blog/${index + 1}`,
+      component: slash(BlogPage),
+      // This data is passed to the template when we create it
+      context: {
+        skip: index * pageSize,
+        currentPage: index + 1,
+        pageSize,
       },
     });
   });

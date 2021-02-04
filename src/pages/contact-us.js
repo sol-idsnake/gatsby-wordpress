@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import useContactForm from "../utils/useContactForm";
 
 import "../styles/ContactUs.scss";
 
@@ -9,7 +10,12 @@ import "../styles/ContactUs.scss";
 const ContactUs = ({ data }) => {
   const { contact } = data;
   const { form } = data;
-  console.log(form);
+
+  const { values, updateValue } = useContactForm({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
 
   return (
     <>
@@ -22,7 +28,41 @@ const ContactUs = ({ data }) => {
 
       <article>
         <h1>Contact Us</h1>
-        <div></div>
+        <div className="gform">
+          <div>
+            <label htmlFor={form.formFields[0].label}>
+              {form.formFields[0].label}
+            </label>
+            <input
+              type={form.formFields[0].type}
+              required={form.formFields[0].isRequired}
+              name={form.formFields[0].label}
+              placeholder={form.formFields[0].placeholder}
+            />
+          </div>
+          <div>
+            <label htmlFor={form.formFields[1].label}>
+              {form.formFields[1].label}
+            </label>
+            <input
+              type={form.formFields[1].type}
+              required={form.formFields[1].isRequired}
+              name={form.formFields[1].label}
+              placeholder={form.formFields[1].placeholder}
+            />
+          </div>
+          <div>
+            <label htmlFor={form.formFields[2].label}>
+              {form.formFields[2].label}
+            </label>
+            <input
+              type={form.formFields[2].type}
+              required={form.formFields[2].isRequired}
+              name={form.formFields[2].label}
+              placeholder={form.formFields[2].placeholder}
+            />
+          </div>
+        </div>
       </article>
     </>
   );

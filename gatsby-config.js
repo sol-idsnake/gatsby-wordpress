@@ -1,10 +1,14 @@
-module.exports = {
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env" });
+
+export default {
   siteMetadata: {
     title: "gatsby-wordpress",
   },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress-experimental",
+      resolve: "gatsby-source-wordpress",
       options: {
         url: "http://localhost:8000/graphql",
         // url: "http://gatsbywp.216-70-96-51.jvv2-rfnp.accessdomain.com/graphql",

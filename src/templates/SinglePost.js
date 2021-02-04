@@ -6,8 +6,10 @@ import sanitizeOptions from "../utils/sanitizeOptions";
 
 import "../styles/singlePost.scss";
 
-const SinglePost = ({ data }) => {
+const SinglePost = ({ data, pageContext }) => {
   const { post } = data;
+
+  console.log(pageContext, "pageContext");
 
   return (
     <>

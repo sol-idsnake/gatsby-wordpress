@@ -12,7 +12,9 @@ const Header = () => {
   return (
     <header>
       <section className="logo">
-        <h3>Header</h3>
+        <h3>
+          <Link to="/">Header</Link>
+        </h3>
       </section>
       <nav>
         <ul className="parent-menu">

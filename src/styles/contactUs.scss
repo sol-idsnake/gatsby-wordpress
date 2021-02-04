@@ -1,4 +1,20 @@
 article {
   margin: 40px auto;
   max-width: 900px;
+
+  .gform {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        padding: 0.5rem;
+      }
+    }
+  }
 }
